@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+   {% for photo in photos %}
+      <img src="{{ photo.path.url }}"><br>
+       <p><input type="button" value="I like it!">
+       Likes: </p>
+   {% endfor %}
+
+
+{% endblock %}
+
+{#<a href="{% url 'photo' photo.id %}">#}

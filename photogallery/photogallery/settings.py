@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -125,3 +125,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
+
+LOGIN_URL = 'account/login'
+LOGIN_REDIRECT_URL = 'main'
+LOGOUT_REDIRECT_URL = '/'
+
+

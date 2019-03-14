@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<title>Photo gallery</title>
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+</head>
+<body>
+    <h1>Photo gallery</h1>
+        {% block content %}
+
+
+        {% endblock %}
+
+<footer>
+    {% if user.is_authenticated %}
+        <p>Jesteś zalogowany jako {{ user }} <a href='{% url 'logout' %}'>Wyloguj</a></p>
+    {% else %}
+        <p>Nie jesteś zalogowany <a href='{% url 'login' %}'>Zaloguj</a></p>
+    {% endif %}
+    </footer>
+
+</body>
+</html>
