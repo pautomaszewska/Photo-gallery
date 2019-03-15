@@ -20,14 +20,17 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 
-from gallery.views import AddPhoto, Photos
+from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^photos', Photos.as_view(), name="main"),
     url(r'^add-photo', AddPhoto.as_view(), name="add-photo"),
+    url(r'^photo/(?P<photo_id>(\d)+)', PhotoDetails.as_view(), name="photo"),
+    url(r'^like/(?P<photo_id>(\d)+)', AddLike.as_view(), name="like"),
 
     url(r'^$', auth_views.LoginView.as_view(), name="login"),
     url(r'^logout/', auth_views.LogoutView.as_view(), name="logout"),
     url(r'^password_reset/', auth_views.PasswordChangeView.as_view(), name='password_reset'),
+
 ] + static(MEDIA_URL, document_root= MEDIA_ROOT)

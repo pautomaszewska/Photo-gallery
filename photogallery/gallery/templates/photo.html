@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <img src="{{ photo.path.url }}"><br>
+    {{ photo.creation_date }}
+    {{ photo.description }}
+    <p>Komentarze</p>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.comment_user }}: {{ comment.content}}</li>
+    {% endfor %}
+    </ul>
+
+    <p>Dodaj komentarz</p>
+        <form action="{%  url 'photo' photo.id %}"  method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <input type="submit" value="Dodaj">
+    </form>
+
+
+{% endblock %}
+
