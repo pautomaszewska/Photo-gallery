@@ -14,32 +14,28 @@ from gallery.forms import AddPhotoForm, CommentForm
 
 
 class AddPhoto(View):
-
     def get(self, request):
         form = AddPhotoForm()
-        like = Like.objects.get(like_photo__user=self.request.user)
-        return render(request, 'add_photo.html', {'form': form, 'like': like})
+        return render(request, 'add_photo.html', {'form': form})
 
     def post(self, request):
         form = AddPhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            photo = Photo(user=self.request.user,
+            photo = Photo(user=request.user,
                           path=form.cleaned_data.get('path'),
                           description=form.cleaned_data.get('description'))
             photo.save()
 
-            return HttpResponseRedirect(reverse('main'))
+            return redirect('/')
 
 
-class Photos(LoginRequiredMixin, View):
-
+class Photos(View):
     def get(self, request):
         photos = Photo.objects.all().order_by('creation_date')
         return render(request, 'photos.html', {'photos': photos})
 
 
 class PhotoDetails(View):
-
     def get(self, request, photo_id):
         form = CommentForm()
         photo = Photo.objects.get(pk=photo_id)

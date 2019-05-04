@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 # Create your models here.
@@ -10,6 +11,15 @@ class Photo(models.Model):
     creation_date = models.DateTimeField(default=now())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=264, verbose_name='Opis')
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.path.path)
+        if img.height > 300 or img.width > 300:
+            new_img = (300, 300)
+            img.thumbnail(new_img)
+            img.save(self.path.path)
 
 
 class Comment(models.Model):

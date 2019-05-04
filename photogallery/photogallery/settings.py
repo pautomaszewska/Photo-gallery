@@ -130,7 +130,5 @@ MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
 
 LOGIN_URL = 'account/login'
-LOGIN_REDIRECT_URL = 'main'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-

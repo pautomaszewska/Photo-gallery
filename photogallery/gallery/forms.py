@@ -6,15 +6,12 @@ class AddPhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = ['path', 'description']
-        widgets = {'user': forms.HiddenInput}
 
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
-        widgets = {'comment_user': forms.HiddenInput,
-                   'photo': forms.HiddenInput}
 
 # class LikeForm(forms.ModelForm):
 #     class Meta:

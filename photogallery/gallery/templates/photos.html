@@ -6,13 +6,7 @@
    {% for photo in photos %}
        <a href="{% url 'photo' photo.id %}"><img src="{{ photo.path.url }}"></a><br>
 
-        <form action="{%  url 'like' photo.id %}"  method="post">
-            {% csrf_token %}
-           <input type="button" value="I like it!">
-        </form>
-            Likes: {{ photo.like_set.all.count }}
 
-       <br>
    {% endfor %}
 
 
