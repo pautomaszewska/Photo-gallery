@@ -2,22 +2,27 @@
 
 {% block content %}
 
-
-    <img src="{{ photo.path.url }}"><br>
+    <div>
+    <img src="{{ photo.path.url }}">
+    </div>
+    <div>
     {{ photo.creation_date }}
+    </div>
+    <div>
     {{ photo.description }}
-    <p>Komentarze</p>
+    </div>
+    <p>Comments</p>
     <ul>
         {% for comment in comments %}
             <li>{{ comment.comment_user }}: {{ comment.content}}</li>
     {% endfor %}
     </ul>
 
-    <p>Dodaj komentarz</p>
+    <p>Add comment</p>
         <form action="{%  url 'photo' photo.id %}"  method="post">
             {% csrf_token %}
             {{ form.as_p }}
-        <input type="submit" value="Dodaj">
+        <input type="submit" value="Publish">
     </form>
 
 

@@ -12,14 +12,14 @@ class Photo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=264, verbose_name='Opis')
 
-    def save(self):
-        super().save()
-
-        img = Image.open(self.path.path)
-        if img.height > 300 or img.width > 300:
-            new_img = (300, 300)
-            img.thumbnail(new_img)
-            img.save(self.path.path)
+    # def save(self):
+    #     super().save()
+    #
+    #     img = Image.open(self.path.path)
+    #     if img.height > 300 or img.width > 300:
+    #         new_img = (300, 300)
+    #         img.thumbnail(new_img)
+    #         img.save(self.path.path)
 
 
 class Comment(models.Model):

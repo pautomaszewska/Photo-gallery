@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm, authenticate, PasswordCh
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from gallery.models import Photo, User, Comment, Like
-from gallery.forms import AddPhotoForm, CommentForm
+from gallery.forms import AddPhotoForm, CommentForm, UserRegisterForm
 
 
 class AddPhoto(View):
@@ -63,4 +63,18 @@ class AddLike(View):
         like.save()
 
         return HttpResponseRedirect(reverse('main'))
+
+class RegisterView(View):
+    def get(self, request):
+        form = UserRegisterForm()
+        return render(request, 'registration/register.html', {'form': form})
+
+    def post(self, request):
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data['password1']
+            user.set_password(password)
+            user.save()
+            return redirect('login')
 

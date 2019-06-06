@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="">
+<div class="card-columns mx-5 my-5 px-5 py-5">
 
    {% for photo in photos %}
-       <a href="{% url 'photo' photo.id %}"><img src="{{ photo.path.url }}"></a><br>
+     <div class="card my-3" style="width: 20rem;">
+        <a href="{% url 'photo' photo.id %}"><img class="card-img" src="{{ photo.path.url }}"></a>
+        </div>
+     {% endfor %}
+</div>
+</div>
 
 
-   {% endfor %}
+
+
 
 
 {% endblock %}
