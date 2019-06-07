@@ -1,0 +1,37 @@
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+#like {
+  fill: lightpink;
+}
+
+
+#photo:hover {
+    border: plum 2px solid;
+}
+
+#main-header {
+    /*display: inline-block;*/
+    font:  40px 'Cookie', Helvetica, sans-serif;
+    color: white;
+    padding: 0;
+    border: none;
+    /*text-align: center;*/
+    /*justify-content: center;*/
+}
+
+.navbar {
+    background-color: #ffcccc;
+    border-radius: 100px;
+    border:  transparent;
+    width: 150px;
+    height: 150px;
+}
+
+#bars {
+    fill: slategrey;
+
+
+}

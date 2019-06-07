@@ -7,10 +7,10 @@ from PIL import Image
 # Create your models here.
 
 class Photo(models.Model):
-    path = models.ImageField(upload_to='media/', verbose_name='Plik')
+    path = models.ImageField(upload_to='media/')
     creation_date = models.DateTimeField(default=now())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.CharField(max_length=264, verbose_name='Opis')
+    description = models.CharField(max_length=264)
 
     # def save(self):
     #     super().save()

@@ -8,13 +8,40 @@
     {% load bootstrap4 %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    {% load octicons %}
+
 </head>
-<body>
-    <h1>Photo gallery</h1>
-    <div>
-        {% if user.is_authenticated %}
-            <p>Jesteś zalogowany jako {{ user }} <a href='{% url 'logout' %}'>Wyloguj</a></p>
+ <button id="bars" class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        {% octicon "three-bars" height='25' %}
+{#      <span class="navbar-toggler-icon"></span>#}
+    </button>
+  </nav>
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="p-4" >
+      {% if user.is_authenticated %}
+            <span class="mx-2">Hello, {{ user }}!</span>
+          <span class="mx-2"><a href='{% url 'logout' %}'>Add photo</a></span>
+          <span class="mx-2"><a href='{% url 'add-photo' %}'>Logout</a></span>
+
          {% endif %}
+    </div>
+  </div>
+<body class="mx-2 my-2">
+ <nav class="navbar mx-auto">
+
+    <button id="main-header" class="navbar-toggler mx-auto" type="button">
+        MyPhotos
+{#      <span class="navbar-toggler-icon"></span>#}
+    </button>
+
+
+</div>
+{#    <h1 id="main-header">MyPortfolio</h1>#}
+    <div>
+
     </div>
 
 
