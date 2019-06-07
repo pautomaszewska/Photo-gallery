@@ -3,9 +3,20 @@
   vertical-align: text-top;
 }
 
-#like {
+.like {
   fill: lightpink;
+    background-color: transparent;
 }
+
+.liked {
+  fill: mediumvioletred;
+    background-color: transparent;
+}
+/*.like:hover {*/
+/*  fill: darkred;*/
+/*    background-color: transparent;*/
+/*}*/
+
 
 
 #photo:hover {

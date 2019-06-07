@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView, CreateView
 from django.views import View
+import json
 from django.views.generic.edit import FormView
 
 from django.contrib.auth.models import User
@@ -32,7 +33,8 @@ class AddPhoto(View):
 class Photos(View):
     def get(self, request):
         photos = Photo.objects.all().order_by('creation_date')
-        return render(request, 'photos.html', {'photos': photos})
+        liked = Photo.objects.filter(like__like_user=request.user)
+        return render(request, 'photos.html', {'photos': photos, 'liked': liked})
 
 
 class PhotoDetails(View):
@@ -56,13 +58,16 @@ class PhotoDetails(View):
 
 class AddLike(View):
 
-    def post(self, request, photo_id):
-        photo = Photo.objects.get(pk=photo_id)
-        like = Like(like_user=request.user,
-                    like_photo=photo)
-        like.save()
+    def post(self, request):
+        id = request.POST.get('pk')
+        photo = Photo.objects.get(pk=id)
+        if not Like.objects.filter(like_user=request.user, like_photo=photo).exists():
+            like = Like(like_user=request.user, like_photo=photo)
+            like.save()
+        like_count = photo.like_set.count()
+        return HttpResponse(json.dumps(like_count), content_type='application/json')
 
-        return HttpResponseRedirect(reverse('main'))
+
 
 class RegisterView(View):
     def get(self, request):
