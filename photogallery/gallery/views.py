@@ -14,7 +14,7 @@ from gallery.models import Photo, User, Comment, Like
 from gallery.forms import AddPhotoForm, CommentForm, UserRegisterForm
 
 
-class AddPhoto(View):
+class AddPhoto(LoginRequiredMixin, View):
     def get(self, request):
         form = AddPhotoForm()
         return render(request, 'add_photo.html', {'form': form})
@@ -33,7 +33,11 @@ class AddPhoto(View):
 class Photos(View):
     def get(self, request):
         photos = Photo.objects.all().order_by('creation_date')
-        liked = Photo.objects.filter(like__like_user=request.user)
+        if request.user.is_authenticated:
+            liked = Photo.objects.filter(like__like_user=request.user)
+        else:
+            liked = None
+
         return render(request, 'photos.html', {'photos': photos, 'liked': liked})
 
 

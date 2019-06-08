@@ -23,8 +23,8 @@
     <div class="p-4" >
       {% if user.is_authenticated %}
             <span class="mx-2">Hello, {{ user }}!</span>
-          <span class="mx-2"><a href='{% url 'logout' %}'>Add photo</a></span>
-          <span class="mx-2"><a href='{% url 'add-photo' %}'>Logout</a></span>
+          <span class="mx-2"><a href='{% url 'add-photo' %}'>Add photo</a></span>
+          <span class="mx-2"><a href='{% url 'logout' %}'>Logout</a></span>
 
          {% endif %}
     </div>
@@ -32,10 +32,10 @@
 <body class="mx-2 my-2">
  <nav class="navbar mx-auto">
 
-    <button id="main-header" class="navbar-toggler mx-auto" type="button">
+    <a href="{% url '/' %}" id="main-header" class="navbar-toggler mx-auto" type="button">
         MyPhotos
 {#      <span class="navbar-toggler-icon"></span>#}
-    </button>
+    </a>
 
 
 </div>

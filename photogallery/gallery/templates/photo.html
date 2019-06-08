@@ -1,30 +1,52 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+    <div class="text-center mt-3">
 
     <div>
     <img src="{{ photo.path.url }}">
     </div>
     <div>
-    {{ photo.creation_date }}
+        <i>
+    {{ photo.description }}
+            </i>
     </div>
     <div>
-    {{ photo.description }}
+    Posted: {{ photo.creation_date }}
     </div>
-    <p>Comments</p>
-    <ul>
-        {% for comment in comments %}
-            <li>{{ comment.comment_user }}: {{ comment.content}}</li>
-    {% endfor %}
-    </ul>
 
-    <p>Add comment</p>
+    {% if photo.like_set.count > 0 %}
+     <p>
+    Likes: {{ photo.like_set.count }}
+    </p>
+    {% endif %}
+    <hr>
+    <div class="comments">Comments
+        {% for comment in comments %}
+            <p>{{ comment.comment_user }}: {{ comment.content}}</p>
+    {% endfor %}
+    <hr>
+
+    <p>Add comment:</p>
         <form action="{%  url 'photo' photo.id %}"  method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-        <input type="submit" value="Publish">
+            {{ form | crispy }}
+        <input class="mt-2" type="submit" value="Publish">
     </form>
+    </div>
+    </div>
 
+
+    <script>
+     $(".comments").on('click', (function(){
+        $(this).children().toggle();
+    })
+     )
+
+</script>
 
 {% endblock %}
+
+
 

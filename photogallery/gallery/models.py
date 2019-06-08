@@ -26,7 +26,7 @@ class Comment(models.Model):
     comment_user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_date = models.DateTimeField(default=now())
     photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
-    content = models.CharField(max_length=4000)
+    content = models.CharField(max_length=4000, verbose_name='')
 
 
 class Like(models.Model):
