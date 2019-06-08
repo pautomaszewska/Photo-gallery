@@ -72,7 +72,6 @@ class AddLike(View):
         return HttpResponse(json.dumps(like_count), content_type='application/json')
 
 
-
 class RegisterView(View):
     def get(self, request):
         form = UserRegisterForm()
@@ -86,4 +85,11 @@ class RegisterView(View):
             user.set_password(password)
             user.save()
             return redirect('login')
+
+
+class Profile(LoginRequiredMixin, View):
+    def get(self, request, id):
+        photos = Photo.objects.filter(user_id=id)
+        return render(request, 'profile.html', {'photos': photos})
+
 

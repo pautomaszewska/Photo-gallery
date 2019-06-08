@@ -5,6 +5,7 @@
 <div class="">
 <div class="card-columns mx-5  px-5 py-1">
 
+
    {% for photo in photos %}
      <div class="card my-3" id="photo" style="width: 20rem;">
         <a href="{% url 'photo' photo.id %}"><img class="card-img" src="{{ photo.path.url }} "></a>

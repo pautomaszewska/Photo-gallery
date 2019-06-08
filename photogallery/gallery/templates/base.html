@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
     {% load octicons %}
+    {% load avatar_tags %}
 
 </head>
  <button id="bars" class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,10 +23,17 @@
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="p-4" >
       {% if user.is_authenticated %}
+          <span>{% avatar user 40 class="rounded-circle" id="user_avatar" %}</span>
             <span class="mx-2">Hello, {{ user }}!</span>
-          <span class="mx-2"><a href='{% url 'add-photo' %}'>Add photo</a></span>
-          <span class="mx-2"><a href='{% url 'logout' %}'>Logout</a></span>
+          <span class="mx-2"><a href='{% url 'profile' user.id %}'>Your profile</a></span>
 
+          <span class="mx-2"><a href='{% url 'add-photo' %}'>Add photo</a></span>
+          <span><a href="{% url 'avatar_change' %}">Change your avatar</a></span>
+          <span class="mx-2"><a href='{% url 'logout' %}'>Logout</a></span>
+          {% else %}
+
+            <span class="mx-2"><a href='{% url 'login' %}'>Login</a></span>
+          <span><a href="{% url 'register' %}">Register</a></span>
          {% endif %}
     </div>
   </div>

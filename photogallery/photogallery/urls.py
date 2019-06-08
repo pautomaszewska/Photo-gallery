@@ -17,10 +17,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.urls import include
 from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 
-from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike, RegisterView
+from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike, RegisterView, Profile
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -28,11 +29,14 @@ urlpatterns = [
     url(r'^add-photo', AddPhoto.as_view(), name="add-photo"),
     url(r'^photo/(?P<photo_id>(\d)+)', PhotoDetails.as_view(), name="photo"),
     url(r'^like', AddLike.as_view(), name="like"),
+    path('profile/<id>', Profile.as_view(), name='profile'),
+
 
     url(r'^login', auth_views.LoginView.as_view(), name="login"),
     url(r'^logout/', auth_views.LogoutView.as_view(), name="logout"),
     path('register/', RegisterView.as_view(), name='register'),
 
     url(r'^password_reset/', auth_views.PasswordChangeView.as_view(), name='password_reset'),
+    path('avatar/', include('avatar.urls')),
 
-] + static(MEDIA_URL, document_root=MEDIA_ROOT)
+              ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

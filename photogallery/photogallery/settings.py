@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'octicons',
     'crispy_forms',
+    'avatar',
     'gallery'
 ]
 
