@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-
- <h1>Dodaj obraz</h1>
+    {% load crispy_forms_tags %}
+<div class="text-center">    <span><i>Add photo</i></span>
         <form action="{%  url 'add-photo' %}"  method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form | crispy }}
         <input type="submit" value="Dodaj">
-    </form>
+        </form>
+</div>
 
 {% endblock %}

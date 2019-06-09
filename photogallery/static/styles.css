@@ -1,3 +1,11 @@
+a {
+    color: slategrey;
+}
+
+a:hover {
+    color: slategrey;
+}
+
 .octicon {
   display: inline-block;
   vertical-align: text-top;
@@ -48,17 +56,93 @@
 }
 
 hr {
-    width: 50%;
+    width: 51%;
 }
 
-/*.column {*/
-/*  float: left;*/
-/*  width: 33.33%;*/
-/*  padding: 5px;*/
+
+.info {
+    width: 51%;
+    border: solid 2px transparent;
+    background-color: ghostwhite;
+    border-radius: 20px;
+}
+
+
+
+.comment {
+    width: 48%;
+    display: inline-block;
+    border: solid 1px darkgray ;
+    background-color: ghostwhite;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+.photo-details {
+    border: solid 1px transparent ;
+    border-radius: 20px;
+}
+
+form label {
+    margin:0 0 3px 0;
+	padding:0;
+	display:block;
+    width: 100%;
+
+}
+.form {
+    margin: 10px auto;
+    max-width: 300px;
+    padding: 20px 12px 10px 25px;
+}
+
+.form input, select {
+    padding: 0;
+	display: block;
+    justify-content: center;
+	margin: 10px 0 0 0;
+    width: 95%;
+}
+
+.form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+
+
+/*.add-comment span {*/
+/*    display: inline-block;*/
+/*        padding: 10px;*/
+/*    margin-left: 120px;*/
+
+/*    !*width: 50%;*!*/
 /*}*/
 
-/*.row::after {*/
-/*  content: "";*/
-/*  clear: both;*/
-/*  display: table;*/
+.add-comment input[type=text] {
+    border: darkgray solid 1px;
+    border-radius: 20px;
+    height: 40px;
+
+}
+
+/*.add-comment input[type=submit] {*/
+/*    display: inline-block;*/
+/*    width: 100%;*/
+/*   !*margin-left: 100px;*!*/
+
 /*}*/
+
+.comm {
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-bottom: 20px;
+
+}

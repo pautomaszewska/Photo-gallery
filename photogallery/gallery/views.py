@@ -90,6 +90,7 @@ class RegisterView(View):
 class Profile(LoginRequiredMixin, View):
     def get(self, request, id):
         photos = Photo.objects.filter(user_id=id)
-        return render(request, 'profile.html', {'photos': photos})
+        photo_user = User.objects.get(id=id)
+        return render(request, 'profile.html', {'photos': photos, 'photo_user': photo_user})
 
 

@@ -32,3 +32,4 @@ class Comment(models.Model):
 class Like(models.Model):
     like_user = models.ForeignKey(User, on_delete=models.CASCADE)
     like_photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
+

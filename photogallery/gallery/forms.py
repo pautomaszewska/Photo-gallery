@@ -14,6 +14,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+        widgets = {'content': forms.TextInput(attrs={'size': 55})}
 
 
 class UserRegisterForm(UserCreationForm):

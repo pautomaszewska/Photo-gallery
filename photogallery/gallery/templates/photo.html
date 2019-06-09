@@ -1,50 +1,62 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load avatar_tags %}
 
 {% block content %}
     <div class="text-center mt-3">
 
-    <div>
-    <img src="{{ photo.path.url }}">
+    <div class="mb-2">
+    <img src="{{ photo.path.url }}" style="width: 40rem" class="photo-details">
     </div>
-    <div>
-        <i>
-    {{ photo.description }}
-            </i>
+    <div class="info mx-auto">
+    <div class="mb-2 mt-3">{% avatar photo.user 30 class="rounded-circle" id="user_avatar" %} {{ photo.user }}
+        <i>{{ photo.description }}</i>
     </div>
-    <div>
+    <div >
     Posted: {{ photo.creation_date }}
     </div>
+
 
     {% if photo.like_set.count > 0 %}
      <p>
     Likes: {{ photo.like_set.count }}
     </p>
     {% endif %}
-    <hr>
-    <div class="comments">Comments
+    </div>
+{#    <hr>#}
+    <div class="comments mt-3">
+    {% if comments %}
+        <p><b>Comments</b></p>
         {% for comment in comments %}
-            <p>{{ comment.comment_user }}: {{ comment.content}}</p>
+            <div class="mb-2">
+            <span> {% avatar comment.comment_user 30 class="rounded-circle" id="user_avatar" %}</span>
+                <span class="comment text-left"><b><a href="{% url 'profile' comment.comment_user.id %}">{{ comment.comment_user }}</a></b> {{ comment.content}}</span>
+            </div>
     {% endfor %}
     <hr>
+    {% endif %}
 
-    <p>Add comment:</p>
+    <p><b>Add comment</b></p>
+
         <form action="{%  url 'photo' photo.id %}"  method="post">
             {% csrf_token %}
-            {{ form | crispy }}
-        <input class="mt-2" type="submit" value="Publish">
+            <div class="add-comment">
+            <span> {% avatar user 30 class="rounded-circle" id="user_avatar" %}</span>
+            <span class="comm">{{ form}}</span>
+                <span><input type="submit" value="Publish"></span>
+            </div>
     </form>
     </div>
     </div>
 
 
-    <script>
-     $(".comments").on('click', (function(){
-        $(this).children().toggle();
-    })
-     )
-
-</script>
+{#    <script>#}
+{#     $(".comments").on('click', (function(){#}
+{#        $(this).children().toggle();#}
+{#    })#}
+{#     )#}
+{##}
+{#</script>#}
 
 {% endblock %}
 
