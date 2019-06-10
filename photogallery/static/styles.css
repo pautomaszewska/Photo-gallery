@@ -28,7 +28,7 @@ a:hover {
 
 
 #photo:hover {
-    border: plum 2px solid;
+    box-shadow: 0 0 1em dimgrey;
 }
 
 #main-header {
@@ -84,38 +84,6 @@ hr {
     border-radius: 20px;
 }
 
-form label {
-    margin:0 0 3px 0;
-	padding:0;
-	display:block;
-    width: 100%;
-
-}
-.form {
-    margin: 10px auto;
-    max-width: 300px;
-    padding: 20px 12px 10px 25px;
-}
-
-.form input, select {
-    padding: 0;
-	display: block;
-    justify-content: center;
-	margin: 10px 0 0 0;
-    width: 95%;
-}
-
-.form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical
-}
-
 
 
 /*.add-comment span {*/
@@ -145,4 +113,42 @@ form label {
     padding-left: 2px;
     padding-bottom: 20px;
 
+}
+
+
+.myform {
+    margin: 10px auto;
+    max-width: 300px;
+    padding: 20px 12px 10px 25px;
+}
+
+.myform label {
+    margin:0 0 3px 0;
+	padding:0;
+	display:block;
+    width: 100%;
+
+}
+
+.myform input, select {
+    padding: 0;
+	display: block;
+    justify-content: center;
+	margin: 10px 0 0 0;
+    width: 95%;
+}
+
+.myform textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+.header {
+    font-size: 20px;
 }

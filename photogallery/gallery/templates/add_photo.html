@@ -2,11 +2,12 @@
 
 {% block content %}
     {% load crispy_forms_tags %}
-<div class="text-center">    <span><i>Add photo</i></span>
-        <form action="{%  url 'add-photo' %}"  method="post" enctype="multipart/form-data">
+<div class="text-center myform">
+    <span class="header"><i>Add photo</i></span>
+        <form action="{%  url 'add-photo' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
-        <input type="submit" value="Dodaj">
+        <input type="submit" value="Submit">
         </form>
 </div>
 

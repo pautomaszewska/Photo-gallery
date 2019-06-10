@@ -17,6 +17,9 @@
 
      {% endif %}
      {% endif %}
+     {% for tag in photo.tags.all %}
+     #{{ tag.name }}
+         {% endfor %}
 
      </div>
 

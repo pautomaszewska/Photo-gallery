@@ -1,25 +1,15 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User
-from PIL import Image
+from taggit.managers import TaggableManager
 
-
-# Create your models here.
 
 class Photo(models.Model):
     path = models.ImageField(upload_to='media/')
     creation_date = models.DateTimeField(default=now())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=264)
-
-    # def save(self):
-    #     super().save()
-    #
-    #     img = Image.open(self.path.path)
-    #     if img.height > 300 or img.width > 300:
-    #         new_img = (300, 300)
-    #         img.thumbnail(new_img)
-    #         img.save(self.path.path)
+    tags = TaggableManager()
 
 
 class Comment(models.Model):

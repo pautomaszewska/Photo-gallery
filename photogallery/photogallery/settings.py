@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'octicons',
     'crispy_forms',
     'avatar',
+    'taggit',
     'gallery'
 ]
 

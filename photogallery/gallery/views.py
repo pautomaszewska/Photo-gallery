@@ -22,10 +22,17 @@ class AddPhoto(LoginRequiredMixin, View):
     def post(self, request):
         form = AddPhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            photo = Photo(user=request.user,
-                          path=form.cleaned_data.get('path'),
-                          description=form.cleaned_data.get('description'))
+            photo = form.save(commit=False)
+            photo.user = request.user
+            photo.path = form.cleaned_data.get('path')
+            photo.description = form.cleaned_data.get('description')
+            # photo.tags = tags=form.cleaned_data.get('tags')
+            # photo = Photo(user=request.user,
+            #               path=form.cleaned_data.get('path'),
+            #               description=form.cleaned_data.get('description'),
+            #               tags=form.cleaned_data.get('tags'))
             photo.save()
+            form.save_m2m()
 
             return redirect('/')
 
@@ -61,7 +68,6 @@ class PhotoDetails(View):
 
 
 class AddLike(View):
-
     def post(self, request):
         id = request.POST.get('pk')
         photo = Photo.objects.get(pk=id)

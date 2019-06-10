@@ -7,7 +7,7 @@ from gallery.models import Photo, Comment, Like
 class AddPhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
-        fields = ['path', 'description']
+        fields = ['path', 'description', 'tags']
 
 
 class CommentForm(forms.ModelForm):
