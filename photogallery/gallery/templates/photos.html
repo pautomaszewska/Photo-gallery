@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="">
-<div class="card-columns mx-5  px-5 py-1">
+<div class="card-columns mx-5 px-5 py-1">
 
 
    {% for photo in photos %}
@@ -17,9 +17,11 @@
 
      {% endif %}
      {% endif %}
+     <span class="mt-1">
      {% for tag in photo.tags.all %}
      #{{ tag.name }}
          {% endfor %}
+     </span>
 
      </div>
 

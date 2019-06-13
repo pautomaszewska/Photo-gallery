@@ -104,7 +104,7 @@ ENV/
 !.vscode/extensions.json
 
 .idea/
-/contacts/settings.py
+/settings.py
 /media
 
 # End of https://www.gitignore.io/api/python,visualstudiocode

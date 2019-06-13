@@ -26,11 +26,6 @@ class AddPhoto(LoginRequiredMixin, View):
             photo.user = request.user
             photo.path = form.cleaned_data.get('path')
             photo.description = form.cleaned_data.get('description')
-            # photo.tags = tags=form.cleaned_data.get('tags')
-            # photo = Photo(user=request.user,
-            #               path=form.cleaned_data.get('path'),
-            #               description=form.cleaned_data.get('description'),
-            #               tags=form.cleaned_data.get('tags'))
             photo.save()
             form.save_m2m()
 
@@ -39,7 +34,7 @@ class AddPhoto(LoginRequiredMixin, View):
 
 class Photos(View):
     def get(self, request):
-        photos = Photo.objects.all().order_by('creation_date')
+        photos = Photo.objects.all().order_by('-creation_date')
         if request.user.is_authenticated:
             liked = Photo.objects.filter(like__like_user=request.user)
         else:
@@ -48,7 +43,7 @@ class Photos(View):
         return render(request, 'photos.html', {'photos': photos, 'liked': liked})
 
 
-class PhotoDetails(View):
+class PhotoDetails(LoginRequiredMixin, View):
     def get(self, request, photo_id):
         form = CommentForm()
         photo = Photo.objects.get(pk=photo_id)
@@ -91,6 +86,8 @@ class RegisterView(View):
             user.set_password(password)
             user.save()
             return redirect('login')
+        else:
+            return render(request, 'registration/register.html', {'form': form})
 
 
 class Profile(LoginRequiredMixin, View):
