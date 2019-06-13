@@ -105,7 +105,7 @@ ENV/
 
 .idea/
 /settings.py
-/media
+photogallery/media
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
 
