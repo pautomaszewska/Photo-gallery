@@ -105,3 +105,10 @@ class SearchPhoto(LoginRequiredMixin, View):
         except ValueError:
             photos = None
         return render(request, 'found.html', {'photos': photos})
+
+
+class LikedPhotos(View):
+    def get(self, request, id):
+        photos = Photo.objects.filter(like__like_user_id=id)
+        photo_user = User.objects.get(id=id)
+        return render(request, 'liked.html', {'photos': photos, 'photo_user': photo_user})

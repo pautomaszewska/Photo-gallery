@@ -29,6 +29,7 @@
           <span>{% avatar user 40 class="rounded-circle" id="user_avatar" %}</span>
             <span class="mx-2">Hello, {{ user }}!</span>
           <span class="mx-2"><a href='{% url 'profile' user.id %}'>Your profile</a></span>
+          <span class="mx-2"><a href='{% url 'user-liked' user.id %}'>Your likes</a></span>
           <span class="mx-2"><a href='{% url 'add-photo' %}'>Add photo</a></span>
           <span><a href="{% url 'avatar_change' %}">Change your avatar</a></span>
           <span class="mx-2"><a href='{% url 'logout' %}'>Logout</a></span>
