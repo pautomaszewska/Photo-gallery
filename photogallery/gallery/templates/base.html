@@ -14,22 +14,31 @@
     {% load avatar_tags %}
 
 </head>
+<body class="mx-2 my-2">
+<nav>
  <button id="bars" class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         {% octicon "three-bars" height='25' %}
 {#      <span class="navbar-toggler-icon"></span>#}
     </button>
   </nav>
+
 <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
-    <div class="p-4" >
+    <div class="p-4">
       {% if user.is_authenticated %}
           <span>{% avatar user 40 class="rounded-circle" id="user_avatar" %}</span>
             <span class="mx-2">Hello, {{ user }}!</span>
           <span class="mx-2"><a href='{% url 'profile' user.id %}'>Your profile</a></span>
-
           <span class="mx-2"><a href='{% url 'add-photo' %}'>Add photo</a></span>
           <span><a href="{% url 'avatar_change' %}">Change your avatar</a></span>
           <span class="mx-2"><a href='{% url 'logout' %}'>Logout</a></span>
+          <span class="search-bar ml-auto">
+  <form class="form-inline" action="{%  url 'search' %}" method="post">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2 search" type="text" placeholder="#" aria-label="Search" name="tag">
+    <button class="btn btn-primary btn-light" type="submit">Search</button>
+  </form>
+          </span>
           {% else %}
 
             <span class="mx-2"><a href='{% url 'login' %}'>Login</a></span>
@@ -37,13 +46,13 @@
          {% endif %}
     </div>
   </div>
-<body class="mx-2 my-2">
  <nav class="navbar mx-auto">
 
     <a href="{% url '/' %}" id="main-header" class="navbar-toggler mx-auto" type="button">
         MyPhotos
 {#      <span class="navbar-toggler-icon"></span>#}
     </a>
+ </nav>
 
 
 </div>

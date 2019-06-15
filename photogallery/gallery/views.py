@@ -97,3 +97,11 @@ class Profile(LoginRequiredMixin, View):
         return render(request, 'profile.html', {'photos': photos, 'photo_user': photo_user})
 
 
+class SearchPhoto(LoginRequiredMixin, View):
+    def post(self, request):
+        tag = request.POST.get('tag')
+        try:
+            photos = Photo.objects.filter(tags__name=tag)
+        except ValueError:
+            photos = None
+        return render(request, 'found.html', {'photos': photos})
