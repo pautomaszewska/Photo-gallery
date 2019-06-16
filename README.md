@@ -4,9 +4,9 @@
 Photo gallery created in Django. The app was inspired by Instagram.
 
 
- ![main](./images/main.jpg)
- ![menu](./images/menu.png)
- ![gallery](./images/gallery.png)
+ ![main](./photogallery/images/main.jpg)
+ ![menu](./photogallery/images/menu.png)
+ ![gallery](./photogallery/images/gallery.png)
 
 
 ### Technologies
