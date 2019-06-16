@@ -15,6 +15,7 @@
         <a href="{% url 'photo' photo.id %}"><img class="card-img" src="{{ photo.path.url }} "></a>
          <div class="card-body">
      <p class="card-text mx-1">{{ photo.description }}</p>
+             <p class="card-text mx-1">by {{ photo.user }}</p>
          <p class="card-text mx-1"><small class="text-muted">Added: {{ photo.creation_date }}</small></p>
 </div>
 

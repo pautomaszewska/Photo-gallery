@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm, authenticate, PasswordCh
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from gallery.models import Photo, User, Comment, Like
-from gallery.forms import AddPhotoForm, CommentForm, UserRegisterForm
+from gallery.forms import AddPhotoForm, CommentForm, UserRegisterForm, UpdatePhotoForm
 
 
 class AddPhoto(LoginRequiredMixin, View):
@@ -112,3 +112,24 @@ class LikedPhotos(View):
         photos = Photo.objects.filter(like__like_user_id=id)
         photo_user = User.objects.get(id=id)
         return render(request, 'liked.html', {'photos': photos, 'photo_user': photo_user})
+
+
+class DeletePhoto(LoginRequiredMixin, View):
+    def get(self, request, id):
+        photo = Photo.objects.get(id=id)
+        photo.delete()
+        return redirect('/')
+
+
+class UpdatePhoto(LoginRequiredMixin, View):
+    def get(self, request, id):
+        photo = Photo.objects.get(id=id)
+        form = UpdatePhotoForm(instance=photo)
+        return render(request, 'update_photo.html', {'form': form, 'photo': photo})
+
+    def post(self, request, id):
+        photo = Photo.objects.get(id=id)
+        form = UpdatePhotoForm(request.POST, instance=photo)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('photo', args=(photo.id,)))

@@ -162,3 +162,23 @@ hr {
     display: inline-block;
     float: right;
 }
+
+.icon {
+    fill: dodgerblue;
+}
+
+.card {
+        height: 100%;
+        display: flex;
+    }
+
+.card-block {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card.card-footer {
+    align-self: flex-end;
+    flex: 1 1 auto;
+}

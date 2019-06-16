@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+<div class="text-center myform">
+    <span class="header"><i>Update photo</i></span>
+        <form action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+        <input type="submit" value="Submit">
+        </form>
+</div>
+
+{% endblock %}
+{% url 'update' photo.id %}

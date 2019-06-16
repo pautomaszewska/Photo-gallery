@@ -11,11 +11,19 @@
 
 
 {% for photo in photos %}
-     <div class="card my-3  mx-auto" id="photo" style="width: 10rem;">
+     <div class="card my-3 mx-auto" id="photo" style="width: 10rem;">
         <a href="{% url 'photo' photo.id %}"><img class="card-img" src="{{ photo.path.url }} "></a>
          <div class="card-body">
      <p class="card-text mx-1">{{ photo.description }}</p>
          <p class="card-text mx-1"><small class="text-muted">Added: {{ photo.creation_date }}</small></p>
+             {% if request.user == photo.user %}
+    <div class="card-footer">
+    <a class="icon" href="{% url 'update' photo.id %}">{% octicon 'tools' height='20' %}</a>
+        <a class="icon float-right" href="{% url 'delete' photo.id %}">{% octicon 'trashcan' height='20' %}</a>
+
+
+    </div>
+    {% endif %}
 </div>
 
      </div>

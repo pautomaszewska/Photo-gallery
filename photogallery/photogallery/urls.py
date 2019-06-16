@@ -21,20 +21,22 @@ from django.urls import include
 from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 
-from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike, RegisterView, Profile, SearchPhoto, LikedPhotos
+from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike, RegisterView, Profile, SearchPhoto, LikedPhotos, \
+    DeletePhoto, UpdatePhoto
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', Photos.as_view(), name='/'),
-    url(r'^add-photo', AddPhoto.as_view(), name="add-photo"),
+    path('add-photo', AddPhoto.as_view(), name="add-photo"),
     path('user-likes/<id>', LikedPhotos.as_view(), name='user-liked'),
-    url(r'^photo/(?P<photo_id>(\d)+)', PhotoDetails.as_view(), name="photo"),
+    path('photo/<photo_id>', PhotoDetails.as_view(), name="photo"),
+    path('update/<id>', UpdatePhoto.as_view(), name='update'),
 
-    url(r'^like', AddLike.as_view(), name="like"),
+
+    path('like', AddLike.as_view(), name="like"),
     path('profile/<id>', Profile.as_view(), name='profile'),
     path('search', SearchPhoto.as_view(), name='search'),
-
-    # path('likes/<id>', LikedPhotos.as_view(), name='liked'),
+    path('delete/<id>', DeletePhoto.as_view(), name='delete'),
 
 
     url(r'^login', auth_views.LoginView.as_view(), name="login"),

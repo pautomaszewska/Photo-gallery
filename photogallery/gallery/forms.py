@@ -31,8 +31,8 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-# class LikeForm(forms.ModelForm):
-#     class Meta:
-#         model = Like
-#         widgets = {'like_user': forms.HiddenInput,
-#                    'like_photo': forms.HiddenInput}
+
+class UpdatePhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ['description', 'tags']
