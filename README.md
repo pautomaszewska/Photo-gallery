@@ -1,4 +1,4 @@
-# LunchTime
+# Photo gallery
 
 ### Info
 Photo gallery created in Django. The app was inspired by Instagram.
