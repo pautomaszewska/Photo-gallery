@@ -73,6 +73,16 @@ class AddLike(View):
         return HttpResponse(json.dumps(like_count), content_type='application/json')
 
 
+class Unlike(View):
+    def post(self, request):
+        id = request.POST.get('pk')
+        photo = Photo.objects.get(pk=id)
+        like = Like.objects.get(like_user=request.user, like_photo=photo)
+        like.delete()
+        like_count = photo.like_set.count()
+        return HttpResponse(json.dumps(like_count), content_type='application/json')
+
+
 class RegisterView(View):
     def get(self, request):
         form = UserRegisterForm()

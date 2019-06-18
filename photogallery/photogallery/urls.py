@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from .settings import MEDIA_ROOT, MEDIA_URL
 
 from gallery.views import AddPhoto, Photos, PhotoDetails, AddLike, RegisterView, Profile, SearchPhoto, LikedPhotos, \
-    DeletePhoto, UpdatePhoto
+    DeletePhoto, UpdatePhoto, Unlike
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -34,6 +34,7 @@ urlpatterns = [
 
 
     path('like', AddLike.as_view(), name="like"),
+    path('unlike', Unlike.as_view(), name="unlike"),
     path('profile/<id>', Profile.as_view(), name='profile'),
     path('search', SearchPhoto.as_view(), name='search'),
     path('delete/<id>', DeletePhoto.as_view(), name='delete'),
@@ -43,7 +44,8 @@ urlpatterns = [
     url(r'^logout/', auth_views.LogoutView.as_view(), name="logout"),
     path('register/', RegisterView.as_view(), name='register'),
 
-    url(r'^password_reset/', auth_views.PasswordChangeView.as_view(), name='password_reset'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='registration/reset_password.html'),
+         name='password-reset'),
     path('avatar/', include('avatar.urls')),
 
     ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

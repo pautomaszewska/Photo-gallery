@@ -12,12 +12,27 @@ a:hover {
 }
 
 .like {
-  fill: lightpink;
+    fill: lightpink;
+    background-color: transparent;
+}
+
+/*.like:focus {*/
+/*  fill: gray;*/
+/*    background-color: transparent;*/
+/*}*/
+
+.unlike {
+    fill: gray;
     background-color: transparent;
 }
 
 .liked {
-  fill: mediumvioletred;
+    fill: gray;
+    background-color: transparent;
+}
+
+.disliked {
+    fill: lightpink;
     background-color: transparent;
 }
 /*.like:hover {*/
